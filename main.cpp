@@ -120,6 +120,9 @@ int main(int argc, char** argv)
     // ez mar nincs benne az idei tananyagba
     for (size_t i = 0; i < alakzatok.size(); ++i)
         delete alakzatok[i];
+    // a factories-el is kell kezdeni valamit, ugyanigy
+    for (size_t i = 0; i < num_facts; ++i)
+        delete facts[i];
 
     // az SDL az alapvetoen egy c-s csoda, nekunk kell manualisan leallitani
     SDL_Quit();
