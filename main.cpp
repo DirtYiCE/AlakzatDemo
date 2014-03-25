@@ -5,6 +5,7 @@
 
 #include "alakzat.hpp"
 #include "kor.hpp"
+#include "poligon.hpp"
 #include "teglalap.hpp"
 
 // globalis valtozo: nem szep, de hasznos
@@ -36,6 +37,7 @@ static int akt_fact = 0;
 static AlakzatFactory const* const facts[] = {
     new KorFactory(),
     new TeglalapFactory(),
+    new PoligonFactory(),
 };
 static const size_t num_facts = sizeof(facts)/sizeof(facts[0]);
 
