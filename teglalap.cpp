@@ -11,6 +11,12 @@ void Teglalap::Rajzol() const
     rectangleRGBA(screen, p1.x, p1.y, p2.x, p2.y, s.r, s.g, s.b, s.a);
 }
 
+void Teglalap::Mozgat(Pont p)
+{
+    p1 += p;
+    p2 += p;
+}
+
 bool Teglalap::Esemeny(SDL_Event& ev)
 {
     if (ev.type == SDL_MOUSEMOTION)

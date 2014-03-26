@@ -41,6 +41,22 @@ struct Pont
         return r;
     }
 
+
+    Pont& operator+=(const Pont& o)
+    {
+        x += o.x;
+        y += o.y;
+        return *this;
+    }
+
+    Pont operator+(const Pont& o) const
+    {
+        Pont r(*this);
+        r += o;
+        return r;
+    }
+
+
     // ha a pontot vektorkent kepzeljuk el, mi a hossza. ez megint az az eset
     // ahol kicsit osszefolynak eltero dolgot, ugyanis egy pontot es egy vektort
     // is x-y koordinatakkent tarolunk. pontot igazabol csak vekorral van

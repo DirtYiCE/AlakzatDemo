@@ -23,6 +23,10 @@ public:
     // fuggvenynek hivjak)
     virtual void Rajzol() const = 0;
 
+    // az alakzat eltolasa p-vel. pure virtual, mivel itt az alakzat nem tudja
+    // hol van -- az csak a leszarmazottakban van eltarolva
+    virtual void Mozgat(Pont p) = 0;
+
     // a felhasznalo vegrehatott valami esemenyt mikozben az objektum ki volt
     // jelolve. szebb lenne minden esemenyhez kulon fuggveny.
     // visszateresi ertek: maradjon-e kivalasztva az elem.

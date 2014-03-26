@@ -98,6 +98,9 @@ int main(int argc, char** argv)
             // hozza az elemet, tehat a tomb vege az uj elem)
             selected = alakzatok.back();
         }
+        else if (ev.type == SDL_MOUSEMOTION && ev.motion.state == SDL_BUTTON_MIDDLE)
+            for (size_t i = 0; i < alakzatok.size(); ++i)
+                alakzatok[i]->Mozgat(Pont(ev.motion.xrel, ev.motion.yrel));
         else if (selected && !selected->Esemeny(ev))
             selected = NULL;
 

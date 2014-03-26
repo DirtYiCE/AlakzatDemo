@@ -11,6 +11,7 @@ public:
     Kor(Pont p, int r, Szin sz) : Alakzat(sz), p(p), r(r) {}
 
     void Rajzol() const;
+    void Mozgat(Pont pont);
     bool Esemeny(SDL_Event& ev);
 
 private:

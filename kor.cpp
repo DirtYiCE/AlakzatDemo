@@ -12,6 +12,11 @@ void Kor::Rajzol() const
     circleRGBA(screen, p.x, p.y, r, s.r, s.g, s.b, s.a);
 }
 
+void Kor::Mozgat(Pont pont)
+{
+    p += pont;
+}
+
 bool Kor::Esemeny(SDL_Event& ev)
 {
     if (ev.type == SDL_MOUSEMOTION)

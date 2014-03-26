@@ -11,6 +11,7 @@ public:
     Teglalap(Pont p1, Pont p2, Szin sz) : Alakzat(sz), p1(p1), p2(p2) {}
 
     void Rajzol() const;
+    void Mozgat(Pont p);
     bool Esemeny(SDL_Event& ev);
 
 private:

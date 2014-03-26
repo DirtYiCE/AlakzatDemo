@@ -12,6 +12,12 @@ void Poligon::Rajzol() const
                  s.r, s.g, s.b, s.a);
 }
 
+void Poligon::Mozgat(Pont p)
+{
+    for (size_t i = 0; i < pts.size(); ++i)
+        pts[i] += p;
+}
+
 bool Poligon::Esemeny(SDL_Event& ev)
 {
     if (ev.type == SDL_MOUSEMOTION)
