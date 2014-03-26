@@ -18,18 +18,14 @@ void Poligon::Mozgat(Pont p)
         pts[i] += p;
 }
 
-bool Poligon::Esemeny(SDL_Event& ev)
+void Poligon::UserRajzol(Pont p)
 {
-    if (ev.type == SDL_MOUSEMOTION)
-    {
-        pts.back() = Pont(ev.button.x, ev.button.y);
-    }
-    else if (ev.type == SDL_MOUSEBUTTONDOWN && ev.button.button == SDL_BUTTON_RIGHT)
-        pts.push_back(pts.back());
-    else if (ev.type == SDL_MOUSEBUTTONUP && ev.button.button == SDL_BUTTON_LEFT)
-        return false;
+    pts.back() = p;
+}
 
-    return true;
+void Poligon::UserKattint()
+{
+    pts.push_back(pts.back());
 }
 
 Poligon* PoligonFactory::Create(Pont p, Szin sz) const

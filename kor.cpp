@@ -17,17 +17,9 @@ void Kor::Mozgat(Pont pont)
     p += pont;
 }
 
-bool Kor::Esemeny(SDL_Event& ev)
+void Kor::UserRajzol(Pont pont)
 {
-    if (ev.type == SDL_MOUSEMOTION)
-    {
-        Pont q(ev.button.x, ev.button.y);
-        r = (p-q).Length();
-    }
-    else if (ev.type == SDL_MOUSEBUTTONUP)
-        return false;
-
-    return true;
+    r = (p-pont).Length();
 }
 
 Kor* KorFactory::Create(Pont p, Szin sz) const

@@ -27,10 +27,15 @@ public:
     // hol van -- az csak a leszarmazottakban van eltarolva
     virtual void Mozgat(Pont p) = 0;
 
-    // a felhasznalo vegrehatott valami esemenyt mikozben az objektum ki volt
-    // jelolve. szebb lenne minden esemenyhez kulon fuggveny.
-    // visszateresi ertek: maradjon-e kivalasztva az elem.
-    virtual bool Esemeny(SDL_Event& ev) = 0;
+    // akkor hivodok meg amikor a felhasznalo lenyomva tartva a bal gombot huzza
+    // az egeret. kor eseten ez atmeretezi a kor sugarat, teglalapnal a jobb
+    // also sarkot hatarozza meg, stb.
+    virtual void UserRajzol(Pont p) = 0;
+
+    // akkor hivodik meg, amikor a felhasznalo rajzolas kozben jobb gombbal
+    // kattint. poligonnal ez uj pontot vesz fel, kornel es tegalalpnal nem
+    // csinal semmit.
+    virtual void UserKattint() {}
 
     const Szin& GetSzin() const { return szin; }
 private:

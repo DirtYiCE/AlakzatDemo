@@ -12,7 +12,7 @@ public:
 
     void Rajzol() const;
     void Mozgat(Pont p);
-    bool Esemeny(SDL_Event& ev);
+    void UserRajzol(Pont p);
 
 private:
     Pont p1, p2;

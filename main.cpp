@@ -82,27 +82,45 @@ int main(int argc, char** argv)
     // neveibol egyertelmuen kitalalhato mi mit csinal...
     std::vector<Alakzat*> alakzatok;
 
-    // a kivalasztott alakzat
-    Alakzat* selected = NULL;
+    // az eppen rajzolt alakzat (ha van)
+    Alakzat* akt = NULL;
     SDL_Event ev;
     while (SDL_WaitEvent(&ev) && ev.type != SDL_QUIT)
     {
         if (ev.type == SDL_KEYDOWN)
-            KeyEvent(ev.key);
-        else if (ev.type == SDL_MOUSEBUTTONDOWN && ev.button.button == SDL_BUTTON_LEFT)
+            KeyEvent(ev.key); // billentyulenyomas kezelese kulon fvben
+        // bal kattintasra uj alakzar felvetele
+        else if (ev.type == SDL_MOUSEBUTTONDOWN &&
+                 ev.button.button == SDL_BUTTON_LEFT)
         {
             // hozzaadunk egy uj alakzatot az alakzatokhoz
             alakzatok.push_back(facts[akt_fact]->Create(
                 Pont(ev.button.x, ev.button.y), szinek[akt_szin].szin));
-            // a kijelolt alakzat a most hozzaadot (az elobb a vegere adtuk
+            // a rajzolt alakzat a most hozzaadot (az elobb a vegere adtuk
             // hozza az elemet, tehat a tomb vege az uj elem)
-            selected = alakzatok.back();
+            akt = alakzatok.back();
         }
-        else if (ev.type == SDL_MOUSEMOTION && ev.motion.state == SDL_BUTTON_MIDDLE)
+        // kozepso gombbal mozgathatjuk az alakzatokat
+        else if (ev.type == SDL_MOUSEMOTION &&
+                 ev.motion.state == SDL_BUTTON_MIDDLE)
+            // minden egyes alakzatot egyesevel megmozgatunk
             for (size_t i = 0; i < alakzatok.size(); ++i)
                 alakzatok[i]->Mozgat(Pont(ev.motion.xrel, ev.motion.yrel));
-        else if (selected && !selected->Esemeny(ev))
-            selected = NULL;
+        else if (akt)
+        {
+            // ha van eppen rajzolt alakzat megnezzuk azzal tennunk kell-e valamit
+            // elsokent hogy mozgatjuk-e, ha igen UserRajzol-t hivunk
+            if (ev.type == SDL_MOUSEMOTION)
+                akt->UserRajzol(Pont(ev.motion.x, ev.motion.y));
+            // jobb gomb lenyomasara a UserKattint-ot hivjuk meg
+            else if (ev.type == SDL_MOUSEBUTTONDOWN &&
+                     ev.button.button == SDL_BUTTON_RIGHT)
+                akt->UserKattint();
+            // bal gomb felengedese eseten vege
+            else if (ev.type == SDL_MOUSEBUTTONUP &&
+                     ev.button.button == SDL_BUTTON_LEFT)
+                akt = NULL;
+        }
 
         // rajzolas: letoroljuk a kepernyot
         SDL_FillRect(screen, NULL, 0);

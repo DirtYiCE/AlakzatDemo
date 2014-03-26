@@ -13,7 +13,8 @@ public:
 
     void Rajzol() const;
     void Mozgat(Pont p);
-    bool Esemeny(SDL_Event& ev);
+    void UserRajzol(Pont p);
+    void UserKattint();
 
 private:
     std::vector<Pont> pts;

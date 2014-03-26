@@ -17,16 +17,9 @@ void Teglalap::Mozgat(Pont p)
     p2 += p;
 }
 
-bool Teglalap::Esemeny(SDL_Event& ev)
+void Teglalap::UserRajzol(Pont p)
 {
-    if (ev.type == SDL_MOUSEMOTION)
-    {
-        p2 = Pont(ev.button.x, ev.button.y);
-    }
-    else if (ev.type == SDL_MOUSEBUTTONUP)
-        return false;
-
-    return true;
+    p2 = p;
 }
 
 Teglalap* TeglalapFactory::Create(Pont p, Szin sz) const
